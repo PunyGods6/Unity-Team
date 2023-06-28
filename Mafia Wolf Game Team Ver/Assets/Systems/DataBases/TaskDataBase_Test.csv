@@ -1,0 +1,4 @@
+AquireTaskNameJeffrey,Aquire,TaskDyscription Billy,MainItem,Self,radiusOfDetector
+PlaceItemTaskNameJeffrey,PlaceItem,TaskDyscription Billy,MainItem,PositionToPlace,radiusOfDetector
+GoHereTaskNameJeffrey,GoHere,TaskDyscription Billy,Self,PositionToPlace,radiusOfDetector
+InteractTaskNameJeffrey,Interact,TaskDyscription Billy,,,
