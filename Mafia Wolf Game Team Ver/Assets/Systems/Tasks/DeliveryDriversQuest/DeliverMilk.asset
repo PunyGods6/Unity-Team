@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c372b025c8c4d92bf11f951ee3d5042, type: 3}
+  m_Name: DeliverMilk
+  m_EditorClassIdentifier: 
+  m_Title:
+    m_Property:
+      rid: 7275489983387926533
+  m_Description:
+    m_Property:
+      rid: 7275489983387926534
+  m_Color:
+    m_Property:
+      rid: 7275489983387926535
+  m_Sprite:
+    m_Property:
+      rid: 7275489983387926536
+  m_Type: 0
+  m_SortOrder: 0
+  m_UniqueId:
+    m_SerializedID:
+      m_String: f1901b37-6e34-4a51-8535-17ff464100b6
+  m_Tasks:
+    rid: 7275489983387926537
+  m_OnActivate:
+    m_Instructions: []
+  m_OnDeactivate:
+    m_Instructions: []
+  m_OnComplete:
+    m_Instructions: []
+  m_OnAbandon:
+    m_Instructions: []
+  m_OnFail:
+    m_Instructions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7275489983387926533
+      type: {class: GetStringString, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: DeliverMilk
+    - rid: 7275489983387926534
+      type: {class: GetStringEmpty, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 7275489983387926535
+      type: {class: GetColorColorsWhite, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 7275489983387926536
+      type: {class: GetSpriteNone, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 7275489983387926537
+      type: {class: TasksTree, ns: GameCreator.Runtime.Quests, asm: GameCreator.Runtime.Quests}
+      data:
+        m_Dirty: 29258
+        m_Data:
+          m_Keys: 7ac160d5
+          m_Values:
+          - m_Id: -715079302
+            m_Value:
+              rid: 7275489983387926574
+        m_Nodes:
+          m_Keys: 7ac160d5
+          m_Values:
+          - m_Id: -715079302
+            m_Parent: -1
+            m_Children: 
+        m_Roots: 7ac160d5
+    - rid: 7275489983387926574
+      type: {class: Task, ns: GameCreator.Runtime.Quests, asm: GameCreator.Runtime.Quests}
+      data:
+        m_Completion: 0
+        m_IsHidden: 0
+        m_Name:
+          m_Property:
+            rid: 7275489983387926575
+        m_Description:
+          m_Property:
+            rid: 7275489983387926576
+        m_Color:
+          m_Property:
+            rid: 7275489983387926577
+        m_Sprite:
+          m_Property:
+            rid: 7275489983387926578
+        m_UseCounter: 0
+        m_CountTo:
+          m_Property:
+            rid: 7275489983387926579
+        m_ValueFrom:
+          m_Property:
+            rid: 7275489983387926580
+        m_CheckWhen:
+          rid: 7275489983387926581
+        m_OnActivate:
+          m_Instructions: []
+        m_OnDeactivate:
+          m_Instructions: []
+        m_OnComplete:
+          m_Instructions: []
+        m_OnAbandon:
+          m_Instructions: []
+        m_OnFail:
+          m_Instructions: []
+    - rid: 7275489983387926575
+      type: {class: GetStringString, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: Deliver Milk To Door
+    - rid: 7275489983387926576
+      type: {class: GetStringTextArea, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Text:
+          m_Text: Hit up the door with some fresh milk styyll
+    - rid: 7275489983387926577
+      type: {class: GetColorColorsWhite, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 7275489983387926578
+      type: {class: GetSpriteNone, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 7275489983387926579
+      type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: 3
+    - rid: 7275489983387926580
+      type: {class: GetDecimalGlobalName, ns: GameCreator.Runtime.Variables, asm: GameCreator.Runtime.Core}
+      data:
+        m_Variable:
+          m_TypeID:
+            m_String: number
+          m_Variable: {fileID: 0}
+          m_Name:
+            m_String: 
+            m_ID: 0
+    - rid: 7275489983387926581
+      type: {class: EventOnLateUpdate, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
