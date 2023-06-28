@@ -1,4 +1,3 @@
-using GameCreator.Editor.Common;
 using GameCreator.Runtime.Variables;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -14,9 +13,9 @@ namespace GameCreator.Editor.Variables
             SerializedProperty value = property.FindPropertyRelative("m_Value");
             if (value == null) return new VisualElement();
             
-            PropertyField field = new PropertyField(value);
+            PropertyField field = new PropertyField(value, this.preferredLabel);
             field.Bind(property.serializedObject);
-
+            
             return field;
         }
     }

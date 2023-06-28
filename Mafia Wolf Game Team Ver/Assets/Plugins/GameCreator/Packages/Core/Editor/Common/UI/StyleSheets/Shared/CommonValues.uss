@@ -1,10 +1,4 @@
 ﻿* {
-    /* DEPRECATED */
-    /*--gc-common-label-length: 120px;*/
-    /*--gc-common-label-width: 117px;*/
-    /*--gc-common-label-margin-left: 3px;*/
-    /* DEPRECATED */
-    
     --gc-common-element-width: 120px;
     --gc-common-element-height: 20px;
 

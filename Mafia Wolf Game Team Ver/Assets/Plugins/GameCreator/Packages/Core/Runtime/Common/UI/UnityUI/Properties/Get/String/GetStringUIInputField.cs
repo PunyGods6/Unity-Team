@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,10 @@ namespace GameCreator.Runtime.Common.UnityUI
             if (gameObject == null) return default;
 
             InputField inputField = gameObject.Get<InputField>();
-            return inputField != null ? inputField.text : string.Empty;
+            if (inputField != null) return inputField.text;
+
+            TMP_InputField tmpInputField = gameObject.Get<TMP_InputField>();
+            return tmpInputField != null ? tmpInputField.text : string.Empty;
         }
 
         public static PropertyGetString Create => new PropertyGetString(

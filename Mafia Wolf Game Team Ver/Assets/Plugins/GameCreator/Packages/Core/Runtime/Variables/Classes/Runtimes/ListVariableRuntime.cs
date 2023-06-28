@@ -19,7 +19,7 @@ namespace GameCreator.Runtime.Variables
         
         // MEMBERS: -------------------------------------------------------------------------------
         
-        [SerializeField] private IndexList m_List = new IndexList();
+        [SerializeReference] private IndexList m_List = new IndexList();
 
         // PROPERTIES: ----------------------------------------------------------------------------
         

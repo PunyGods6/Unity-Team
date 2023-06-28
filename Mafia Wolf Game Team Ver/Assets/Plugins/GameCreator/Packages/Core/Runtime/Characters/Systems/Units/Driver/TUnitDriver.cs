@@ -41,6 +41,8 @@ namespace GameCreator.Runtime.Characters
         }
 
         public abstract bool Collision { get; set; }
+        
+        public abstract Axonometry Axonometry { get; set; }
 
         // INITIALIZERS: --------------------------------------------------------------------------
 

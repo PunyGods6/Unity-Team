@@ -73,7 +73,7 @@ namespace GameCreator.Runtime.Inventory
         
         // REGISTRATION METHODS: ------------------------------------------------------------------
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void RuntimeInit() => RegisterValueType(
             TYPE_ID, 
             new TypeData(typeof(ValueRuntimeItem), CreateValue)

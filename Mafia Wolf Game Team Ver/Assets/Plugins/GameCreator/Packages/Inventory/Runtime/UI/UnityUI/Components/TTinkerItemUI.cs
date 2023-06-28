@@ -50,6 +50,7 @@ namespace GameCreator.Runtime.Inventory.UnityUI
         [field: NonSerialized] private TinkerUI TinkerUI { get; set; }
         
         protected abstract bool CanTinker { get; }
+        protected abstract bool EnoughIngredients { get; }
         
         // INITIALIZERS: --------------------------------------------------------------------------
 
@@ -120,7 +121,7 @@ namespace GameCreator.Runtime.Inventory.UnityUI
 
             if (this.m_ButtonTinker != null)
             {
-                this.m_ButtonTinker.interactable = this.CanTinker;
+                this.m_ButtonTinker.interactable = this.CanTinker && this.EnoughIngredients;
             }
 
             this.m_AmountInInputBag.Text = this.InputBag.Content.CountType(this.RuntimeItem.Item).ToString();
@@ -216,7 +217,7 @@ namespace GameCreator.Runtime.Inventory.UnityUI
 
             if (this.m_ButtonTinker != null)
             {
-                this.m_ButtonTinker.interactable = this.CanTinker;
+                this.m_ButtonTinker.interactable = this.CanTinker && this.EnoughIngredients;
             }
             
             return true;

@@ -129,11 +129,14 @@ namespace GameCreator.Runtime.Dialogue
             this.InvokeEventStartChoice(id);
             
             List<int> choices = GetChoices(story, id, args, true);
-            if (choices.Count == 1) this.Choose(choices[0]);
+            if (choices.Count == 1 && story.Content.DialogueSkin.ValuesChoices.AutoOneChoice)
+            {
+                this.Choose(choices[0]);
+            }
 
             float startTime = story.Time.Time;
 
-            while (this.m_ChosenId == Content.NODE_INVALID && !story.IsCanceled)
+            while (PendingChoice(story, args) && !story.IsCanceled)
             {
                 await Task.Yield();
                 if (!this.GetTimedChoice(skin) || story.Time.Time < startTime + this.m_CurrentDuration)
@@ -179,6 +182,19 @@ namespace GameCreator.Runtime.Dialogue
             return skipChoice 
                 ? story.Content.Children(this.m_ChosenId)
                 : new List<int> { this.m_ChosenId };
+        }
+        
+        // PRIVATE METHODS: -----------------------------------------------------------------------
+        
+        private bool PendingChoice(Story story, Args args)
+        {
+            if (this.m_ChosenId == Content.NODE_INVALID) return true;
+            
+            Node choice = story.Content.Get(this.m_ChosenId);
+            if (choice.CanRun(args)) return false;
+            
+            this.m_ChosenId = Content.NODE_INVALID;
+            return true;
         }
     }
 }

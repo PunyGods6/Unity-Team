@@ -1,3 +1,4 @@
+using System;
 using GameCreator.Runtime.Common;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace GameCreator.Runtime.Characters
 {
     [Title("Axonometry Type")]
     
-    public interface IAxonometry
+    public interface IAxonometry : ICloneable
     {
         /// <summary>
         /// Driver unit. Executed whenever the movement speed and direction vectors are calculated and

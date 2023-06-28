@@ -25,6 +25,14 @@ namespace GameCreator.Runtime.Characters
         
         [SerializeField] private Axonometry m_Axonometry = new Axonometry();
         
+        // PROPERTIES: ----------------------------------------------------------------------------
+        
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
+        
         // METHODS: -------------------------------------------------------------------------------
         
         protected override Vector3 GetDefaultDirection()

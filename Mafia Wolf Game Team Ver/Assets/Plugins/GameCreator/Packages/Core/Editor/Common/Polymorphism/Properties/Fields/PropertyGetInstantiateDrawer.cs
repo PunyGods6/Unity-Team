@@ -28,7 +28,10 @@ namespace GameCreator.Editor.Common
 
             SerializationUtils.CreateChildProperties(
                 root, property, 
-                item.HideLabelsInEditor(),
+                item.HideLabelsInEditor() 
+                    ? SerializationUtils.ChildrenMode.HideLabelsInChildren 
+                    : SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true,
                 IPropertyDrawer.PROPERTY_NAME,
                 USE_POOLING, SIZE, HAS_DURATION, DURATION
             );

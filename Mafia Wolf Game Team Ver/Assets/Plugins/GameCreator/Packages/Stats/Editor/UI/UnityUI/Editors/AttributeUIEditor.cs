@@ -24,7 +24,7 @@ namespace GameCreator.Editor.Stats.UnityUI
         private SerializedProperty m_StallDuration;
         
         private VisualElement m_TransitionOptions;
-        
+
         // PAINT METHOD: --------------------------------------------------------------------------
         
         public override VisualElement CreateInspectorGUI()
@@ -50,6 +50,12 @@ namespace GameCreator.Editor.Stats.UnityUI
             SerializedProperty attrImageScaleX = this.serializedObject.FindProperty("m_ScaleX");
             SerializedProperty attrImageScaleY = this.serializedObject.FindProperty("m_ScaleY");
             
+            SerializedProperty unitContainer = this.serializedObject.FindProperty("m_UnitContainer");
+            SerializedProperty unitPrefab = this.serializedObject.FindProperty("m_UnitPrefab");
+            SerializedProperty unitMode = this.serializedObject.FindProperty("m_UnitMode");
+            SerializedProperty unitValue = this.serializedObject.FindProperty("m_UnitValue");
+
+
             this.m_WhenIncrement = this.serializedObject.FindProperty("m_WhenIncrement");
             this.m_WhenDecrement = this.serializedObject.FindProperty("m_WhenDecrement");
             this.m_StallDuration = this.serializedObject.FindProperty("m_StallDuration");
@@ -70,12 +76,19 @@ namespace GameCreator.Editor.Stats.UnityUI
             this.m_Body.Add(new PropertyField(attrPercentage));
             this.m_Body.Add(new PropertyField(attrMinValue));
             this.m_Body.Add(new PropertyField(attrMaxValue));
-            
+
             this.m_Body.Add(new SpaceSmall());
             this.m_Body.Add(new LabelTitle("Progress:"));
             this.m_Body.Add(new PropertyField(attrImageFill));
             this.m_Body.Add(new PropertyField(attrImageScaleX));
             this.m_Body.Add(new PropertyField(attrImageScaleY));
+            
+            this.m_Body.Add(new SpaceSmall());
+            this.m_Body.Add(new LabelTitle("Units:"));
+            this.m_Body.Add(new PropertyField(unitContainer));
+            this.m_Body.Add(new PropertyField(unitPrefab));
+            this.m_Body.Add(new PropertyField(unitMode));
+            this.m_Body.Add(new PropertyField(unitValue));
 
             this.m_Body.Add(new SpaceSmall());
             this.m_Body.Add(new LabelTitle("Transitions:"));
@@ -88,7 +101,7 @@ namespace GameCreator.Editor.Stats.UnityUI
             
             this.m_TransitionOptions = new VisualElement();
             this.m_Body.Add(this.m_TransitionOptions);
-            
+
             fieldWhenIncrement.RegisterValueChangeCallback(_ => this.UpdateTransitionOptions());
             fieldWhenDecrement.RegisterValueChangeCallback(_ => this.UpdateTransitionOptions());
 

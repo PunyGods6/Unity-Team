@@ -17,6 +17,13 @@ namespace GameCreator.Runtime.Inventory.UnityUI
             this.OutputBag
         );
         
+        
+
+        protected override bool EnoughIngredients => Crafting.EnoughCraftingIngredients(
+            this.RuntimeItem.Item,
+            this.InputBag
+        );
+
         // PUBLIC METHODS: ------------------------------------------------------------------------
 
         public void Craft()
@@ -35,7 +42,8 @@ namespace GameCreator.Runtime.Inventory.UnityUI
         {
             if (this.IsRunning) return false;
             if (!Crafting.CanCraft(this.RuntimeItem.Item, this.InputBag, this.OutputBag)) return false;
-
+            if (!Crafting.EnoughCraftingIngredients(this.RuntimeItem.Item, this.InputBag)) return false;
+            
             _ = this.m_OnStart.Run(this.Args);
             
             bool awaitSuccess = await this.WaitForTime();

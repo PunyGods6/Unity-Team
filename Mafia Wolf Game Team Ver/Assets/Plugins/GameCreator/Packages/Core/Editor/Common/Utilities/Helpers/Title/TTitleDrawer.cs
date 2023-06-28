@@ -42,7 +42,12 @@ namespace GameCreator.Editor.Common
 
         protected virtual void CreateContent(VisualElement body, SerializedProperty property)
         {
-            SerializationUtils.CreateChildProperties(body, property, false);
+            SerializationUtils.CreateChildProperties(
+                body,
+                property,
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
+            );
         }
     }
 }

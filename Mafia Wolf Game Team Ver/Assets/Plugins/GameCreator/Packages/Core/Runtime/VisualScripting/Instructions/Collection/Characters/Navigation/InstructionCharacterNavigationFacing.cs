@@ -34,7 +34,11 @@ namespace GameCreator.Runtime.VisualScripting
             Character character = this.m_Character.Get<Character>(args);
             if (character == null) return DefaultResult;
 
-            character.Kernel.ChangeFacing(character, this.m_Rotation.Wrapper);
+            if (this.m_Rotation.Wrapper.GetType() != character.Facing.GetType())
+            {
+                character.Kernel.ChangeFacing(character, this.m_Rotation.Wrapper);
+            }
+
             return DefaultResult;
         }
     }

@@ -67,7 +67,7 @@ namespace GameCreator.Editor.Common
 
         public VisualElement DropAbove { get; } = new VisualElement();
         public VisualElement DropBelow { get; } = new VisualElement();
-        
+
         public bool IsExpanded
         {
             get

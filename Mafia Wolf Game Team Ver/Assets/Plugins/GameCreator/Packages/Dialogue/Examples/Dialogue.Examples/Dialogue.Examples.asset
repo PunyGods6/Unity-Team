@@ -19,8 +19,8 @@ MonoBehaviour:
     m_Author: Catsoft Works
     m_Version:
       major: 1
-      minor: 1
-      patch: 8
+      minor: 2
+      patch: 10
     m_Complexity: 0
     m_Dependencies:
     - m_ID: GameCreator.Blockout
@@ -37,7 +37,7 @@ MonoBehaviour:
       m_MinVersion:
         major: 1
         minor: 1
-        patch: 4
+        patch: 5
     - m_ID: Dialogue.SkinCyberpunk
       m_MinVersion:
         major: 1
@@ -52,4 +52,4 @@ MonoBehaviour:
       m_MinVersion:
         major: 1
         minor: 1
-        patch: 3
+        patch: 4

@@ -4,10 +4,10 @@ using GameCreator.Runtime.Common;
 
 namespace GameCreator.Runtime.VisualScripting
 {
-    [Title("Activate Object")]
+    [Title("Instantiate Prefab")]
     [Image(typeof(IconCubeSolid), ColorTheme.Type.Blue)]
     
-    [Category("Tooltips/Activate Object")]
+    [Category("Tooltips/Instantiate Prefab")]
     [Description(
         "Creates or Activates a prefab game object when the Hotspot is enabled and " +
         "deactivates it when the Hotspot is disabled"
@@ -29,7 +29,7 @@ namespace GameCreator.Runtime.VisualScripting
         // PROPERTIES: ----------------------------------------------------------------------------
 
         public override string Title => string.Format(
-            "Show {0}",
+            "Instantiate {0}",
             this.m_Prefab != null ? this.m_Prefab.name : "(none)"
         );
 

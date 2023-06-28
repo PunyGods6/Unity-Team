@@ -4,7 +4,6 @@ using GameCreator.Editor.Common;
 using GameCreator.Runtime.Common;
 using GameCreator.Runtime.Variables;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,15 +14,19 @@ namespace GameCreator.Editor.Variables
     {
         private TextField m_NameField;
         private VisualElement m_NameDropdown;
+
+        // PROPERTIES: ----------------------------------------------------------------------------
+
+        protected override Object Asset => this.m_PropertyVariable.objectReferenceValue;
         
         // CONSTRUCTOR: ---------------------------------------------------------------------------
 
-        public GlobalNamePickTool(ObjectField asset, SerializedProperty property)
-            : base(asset, property, true, false, ValueNull.TYPE_ID)
+        public GlobalNamePickTool(SerializedProperty property)
+            : base(property, true, false, ValueNull.TYPE_ID)
         { }
         
-        public GlobalNamePickTool(ObjectField asset, SerializedProperty property, IdString typeID, bool allowCast)
-            : base(asset, property, false, allowCast, typeID)
+        public GlobalNamePickTool(SerializedProperty property, IdString typeID, bool allowCast)
+            : base(property, false, allowCast, typeID)
         { }
 
         protected override void RefreshPickList(Object asset)

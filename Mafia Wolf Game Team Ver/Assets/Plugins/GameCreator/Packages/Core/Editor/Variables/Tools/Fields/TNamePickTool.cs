@@ -23,13 +23,13 @@ namespace GameCreator.Editor.Variables
 
         protected readonly SerializedProperty m_Property;
         
-        private readonly SerializedProperty m_PropertyVariable;
+        protected readonly SerializedProperty m_PropertyVariable;
         protected readonly SerializedProperty m_PropertyName;
 
-        private readonly ObjectField m_Asset;
-        
         protected readonly bool m_AllowAny;
         protected readonly bool m_AllowCast;
+
+        protected abstract Object Asset { get; }
 
         // PROPERTIES: ----------------------------------------------------------------------------
 
@@ -37,17 +37,14 @@ namespace GameCreator.Editor.Variables
 
         // CONSTRUCTOR: ---------------------------------------------------------------------------
 
-        protected TNamePickTool(ObjectField asset, SerializedProperty property, 
-            bool allowAny, bool allowCast, IdString typeID)
+        protected TNamePickTool(SerializedProperty property, bool allowAny, bool allowCast, IdString typeID)
         {
             StyleSheet[] sheets = StyleSheetUtils.Load(USS_PATH);
             foreach (StyleSheet styleSheet in sheets)
             {
                 this.styleSheets.Add(styleSheet);
             }
-            
-            asset.AddToClassList(AlignLabel.CLASS_UNITY_ALIGN_LABEL);
-            
+
             this.m_Property = property;
             this.m_Property.serializedObject.Update();
             
@@ -58,17 +55,15 @@ namespace GameCreator.Editor.Variables
             this.m_AllowCast = allowCast;
             
             this.TypeID = typeID;
-            this.m_Asset = asset;
-            
-            asset.UnregisterValueChangedCallback(this.OnChangeAsset);
-            asset.RegisterValueChangedCallback(this.OnChangeAsset);
-            
-            this.RefreshPickList(this.m_PropertyVariable.objectReferenceValue);
+
+            this.RefreshPickList(this.Asset);
         }
 
-        private void OnChangeAsset(ChangeEvent<Object> changeEvent)
+        // PUBLIC METHODS: ------------------------------------------------------------------------
+
+        public void OnChangeAsset()
         {
-            this.RefreshPickList(changeEvent.newValue);
+            this.RefreshPickList(this.Asset);
         }
         
         // PROTECTED METHODS: ---------------------------------------------------------------------

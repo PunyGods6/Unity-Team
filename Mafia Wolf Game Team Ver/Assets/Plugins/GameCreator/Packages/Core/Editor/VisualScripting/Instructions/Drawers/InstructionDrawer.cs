@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using GameCreator.Runtime.VisualScripting;
 using GameCreator.Editor.Common;
@@ -15,7 +14,8 @@ namespace GameCreator.Editor.VisualScripting
             SerializationUtils.CreateChildProperties(
                 container,
                 property,
-                false
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
             );
 
             return container;

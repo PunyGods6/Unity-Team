@@ -2,6 +2,7 @@ using System;
 using GameCreator.Runtime.Variables;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace GameCreator.Editor.Variables
 {
@@ -13,7 +14,10 @@ namespace GameCreator.Editor.Variables
 
         protected override TNamePickTool Tool(ObjectField field, SerializedProperty property)
         {
-            return new LocalNamePickTool(field, property);
+            LocalNamePickTool namePickTool = new LocalNamePickTool(property);
+            field.RegisterValueChangedCallback(_ => namePickTool.OnChangeAsset());
+
+            return namePickTool;
         }
     }
 }

@@ -32,6 +32,8 @@ namespace GameCreator.Runtime.Characters
 
         public float PivotSpeed => this.m_PivotSpeed;
 
+        public abstract Axonometry Axonometry { get; set; }
+
         // INITIALIZERS: --------------------------------------------------------------------------
 
         public virtual void OnStartup(Character character)

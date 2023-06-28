@@ -8,7 +8,7 @@ namespace GameCreator.Runtime.Variables
     public class FieldSetLocalList : TFieldSetVariable
     {
         [SerializeField]
-        protected LocalListVariables m_Variable;
+        protected PropertyGetGameObject m_Variable = new PropertyGetGameObject();
 
         [SerializeReference]
         protected TListSetPick m_Select = new SetPickFirst();
@@ -24,18 +24,16 @@ namespace GameCreator.Runtime.Variables
 
         public override void Set(object value, Args args)
         {
-            if (this.m_Variable == null) return;
-            m_Variable.Set(this.m_Select, value, args);
+            LocalListVariables instance = this.m_Variable.Get<LocalListVariables>(args);
+            if (instance != null) instance.Set(this.m_Select, value, args);
         }
 
         public override object Get(Args args)
         {
-            if (this.m_Variable == null) return null;
-            return m_Variable.Get(this.m_Select, args);
+            LocalListVariables instance = this.m_Variable.Get<LocalListVariables>(args);
+            return instance != null ? instance.Get(this.m_Select, args) : null;
         }
 
-        public override string ToString() => this.m_Variable != null
-            ? $"{m_Variable.name}[{this.m_Select}]"
-            : "(none)";
+        public override string ToString() => $"{this.m_Variable}[{this.m_Select}]";
     }
 }

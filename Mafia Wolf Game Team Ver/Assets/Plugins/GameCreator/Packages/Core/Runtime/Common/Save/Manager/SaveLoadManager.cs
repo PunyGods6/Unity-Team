@@ -124,7 +124,7 @@ namespace GameCreator.Runtime.Common
             {
                 Instance.m_ResetGreed[reference.SaveID] = new Value
                 {
-                    value = reference.SaveData,
+                    value = reference.GetSaveData(true),
                     isShared = false
                 };
             }
@@ -161,7 +161,7 @@ namespace GameCreator.Runtime.Common
             Instance.m_Subscriptions.Remove(reference.SaveID);
             Instance.m_Values[reference.SaveID] = new Value
             {
-                value = reference.SaveData,
+                value = reference.GetSaveData(false),
                 isShared = reference.IsShared
             };
         }
@@ -196,7 +196,7 @@ namespace GameCreator.Runtime.Common
                 if (item.Value.reference == null) continue;
                 this.m_Values[item.Value.reference.SaveID] = new Value
                 {
-                    value = item.Value.reference.SaveData,
+                    value = item.Value.reference.GetSaveData(false),
                     isShared = item.Value.reference.IsShared
                 };
             }
@@ -242,6 +242,7 @@ namespace GameCreator.Runtime.Common
                 if (item == null) continue;
                 if (item.LoadMode == LoadMode.Lazy) continue;
                 
+                await this.ResetItem(references[i].reference);
                 await this.LoadItem(references[i].reference, slot);
             }
             
@@ -277,7 +278,7 @@ namespace GameCreator.Runtime.Common
                 this.m_Slots.Remove(slot);
 
                 string key = DatabaseKey(slot, this.m_Slots.IsShared, this.m_Slots.SaveID);
-                await this.DataStorage.SetBlob(key, this.m_Slots.SaveData);
+                await this.DataStorage.SetBlob(key, this.m_Slots.GetSaveData(false));
             }
 
             await this.DataStorage.Commit();

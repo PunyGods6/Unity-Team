@@ -7,7 +7,9 @@ namespace GameCreator.Runtime.Variables
     [Serializable]
     public class FieldSetLocalName : TFieldSetVariable
     {
-        [SerializeField] protected LocalNameVariables m_Variable;
+        [SerializeReference]
+        protected PropertyGetGameObject m_Variable = new PropertyGetGameObject();
+        
         [SerializeField] protected IdPathString m_Name;
 
         // CONSTRUCTORS: --------------------------------------------------------------------------
@@ -21,20 +23,21 @@ namespace GameCreator.Runtime.Variables
         
         public override void Set(object value, Args args)
         {
-            if (this.m_Variable == null) return;
-            this.m_Variable.Set(this.m_Name.String, value);
+            LocalNameVariables instance = this.m_Variable.Get<LocalNameVariables>(args);
+            instance.Set(this.m_Name.String, value);
         }
 
         public override object Get(Args args)
         {
-            return this.m_Variable != null ? this.m_Variable.Get(this.m_Name.String) : null;
+            LocalNameVariables instance = this.m_Variable.Get<LocalNameVariables>(args);
+            return instance != null ? instance.Get(this.m_Name.String) : null;
         }
 
         public override string ToString()
         {
             return string.Format(
                 "{0}{1}",
-                this.m_Variable != null ? this.m_Variable.gameObject.name : "(none)",
+                this.m_Variable,
                 string.IsNullOrEmpty(this.m_Name.String) ? string.Empty : $"[{this.m_Name.String}]" 
             );
         }

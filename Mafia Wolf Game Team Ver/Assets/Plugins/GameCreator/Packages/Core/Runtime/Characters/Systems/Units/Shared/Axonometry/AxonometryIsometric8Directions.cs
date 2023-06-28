@@ -50,5 +50,16 @@ namespace GameCreator.Runtime.Characters
 
             return ISOMETRIC_DIRECTIONS[octant].normalized * magnitude;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+
+        public override object Clone()
+        {
+            return new AxonometryIsometric8Directions();
+        }
+        
+        // STRING: --------------------------------------------------------------------------------
+        
+        public override string ToString() => "8 Directions";
     }
 }

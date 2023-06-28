@@ -23,6 +23,14 @@ namespace GameCreator.Runtime.Characters
         
         [NonSerialized] private Args m_Args;
         
+        // PROPERTIES: ----------------------------------------------------------------------------
+        
+        public override Axonometry Axonometry
+        {
+            get => null;
+            set => _ = value;
+        }
+        
         // METHODS: -------------------------------------------------------------------------------
 
         protected override Vector3 GetDefaultDirection()

@@ -17,22 +17,18 @@ namespace GameCreator.Editor.Variables
             SerializedProperty variable = property.FindPropertyRelative("m_Variable");
             SerializedProperty typeID = property.FindPropertyRelative("m_TypeID");
 
-            ObjectField fieldVariable = new ObjectField(variable.displayName)
-            {
-                allowSceneObjects = true,
-                objectType = typeof(LocalNameVariables),
-                bindingPath = variable.propertyPath
-            };
+            PropertyField fieldVariable = new PropertyField(variable, variable.displayName);
             
             SerializedProperty typeIDStr = typeID.FindPropertyRelative(IdStringDrawer.NAME_STRING);
             IdString typeIDValue = new IdString(typeIDStr.stringValue);
             
             LocalNamePickTool toolPickName = new LocalNamePickTool(
-                fieldVariable, 
                 property,
                 typeIDValue,
                 true
             );
+            
+            fieldVariable.RegisterValueChangeCallback(_ => toolPickName.OnChangeAsset());
 
             root.Add(fieldVariable);
             root.Add(toolPickName);

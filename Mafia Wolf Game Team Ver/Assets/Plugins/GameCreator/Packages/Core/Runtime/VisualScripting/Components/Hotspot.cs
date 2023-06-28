@@ -19,12 +19,14 @@ namespace GameCreator.Runtime.VisualScripting
         private const float GIZMOS_ALPHA_ON = 0.25f;
         private const float GIZMOS_ALPHA_OFF = 0.1f;
 
+        private const float INFINITY = float.MaxValue;
+
         // EXPOSED MEMBERS: -----------------------------------------------------------------------
 
         [SerializeField]
         protected PropertyGetGameObject m_Target = GetGameObjectPlayer.Create();
-        
-        [SerializeField] protected float m_Radius = 10f;
+
+        [SerializeField] protected EnablerFloat m_Radius = new EnablerFloat(true, 10f);
         [SerializeField] protected Vector3 m_Offset = Vector3.zero;
 
         [SerializeField]
@@ -41,8 +43,12 @@ namespace GameCreator.Runtime.VisualScripting
         
         public float Radius
         {
-            get => this.m_Radius;
-            set => this.m_Radius = value;
+            get => this.m_Radius.IsEnabled ? this.m_Radius.Value : INFINITY;
+            set
+            {
+                this.m_Radius.IsEnabled = true;
+                this.m_Radius.Value = value;
+            }
         }
 
         public Vector3 Position => this.transform.TransformPoint(this.m_Offset);
@@ -151,11 +157,14 @@ namespace GameCreator.Runtime.VisualScripting
                 alpha
             );
 
-            GizmosExtension.Octahedron(
-                this.Position,
-                this.Rotation,
-                this.Radius
-            );
+            if (this.m_Radius.IsEnabled)
+            {
+                GizmosExtension.Octahedron(
+                    this.Position,
+                    this.Rotation,
+                    this.Radius
+                );   
+            }
 
             this.m_Spots.OnGizmos(this);
             

@@ -26,14 +26,13 @@ namespace GameCreator.Runtime.Inventory
 
             foreach (Cell contentCell in contentList)
             {
-                if (!contentCell.Available) continue;
+                if (contentCell.Available) continue;
                 candidatesList.Add(contentCell);
             }
-
-            int candidatesListCount = candidatesList.Count;
             
+            int candidatesListCount = candidatesList.Count;
             if (candidatesListCount == 0) return null;
-
+            
             int randomIndex = UnityEngine.Random.Range(0, candidatesListCount);
             return candidatesList[randomIndex].Item;
         }

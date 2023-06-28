@@ -57,7 +57,7 @@ namespace GameCreator.Runtime.Inventory
 
         public bool AllowToCraft => this.m_CanCraft;
         public bool AllowToDismantle => this.m_CanDismantle;
-        
+
         // EVENTS: --------------------------------------------------------------------------------
 
         public static event Action EventCraft;
@@ -90,7 +90,12 @@ namespace GameCreator.Runtime.Inventory
                 }
             );
             
-            if (!canCraft) return false;
+            return canCraft && outputBag.Content.CanAddType(item, true);
+        }
+
+        public static bool EnoughCraftingIngredients(Item item, Bag inputBag)
+        {
+            if (item == null || inputBag == null) return false;
             
             int ingredientsLength = item.Crafting.Ingredients.Length;
             for (int i = 0; i < ingredientsLength; ++i)
@@ -101,13 +106,15 @@ namespace GameCreator.Runtime.Inventory
                 return false;
             }
 
-            return outputBag.Content.CanAddType(item, true);
+            return true;
         }
         
         public static RuntimeItem Craft(Item item, Bag inputBag, Bag outputBag)
         {
             LastItemAttemptedCraft = item;
+            
             if (!CanCraft(item, inputBag, outputBag)) return null;
+            if (!EnoughCraftingIngredients(item, inputBag)) return null;
 
             int ingredientsLength = item.Crafting.Ingredients.Length;
             List<RuntimeItem> removeRuntimeItemList = new List<RuntimeItem>();

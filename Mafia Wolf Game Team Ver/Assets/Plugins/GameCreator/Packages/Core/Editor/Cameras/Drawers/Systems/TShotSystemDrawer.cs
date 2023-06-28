@@ -11,7 +11,12 @@ namespace GameCreator.Editor.Cameras
         
         protected override void CreatePropertyContent(VisualElement root, SerializedProperty property)
         {
-            SerializationUtils.CreateChildProperties(root, property, false);
+            SerializationUtils.CreateChildProperties(
+                root,
+                property,
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
+            );
         }
     }
 }

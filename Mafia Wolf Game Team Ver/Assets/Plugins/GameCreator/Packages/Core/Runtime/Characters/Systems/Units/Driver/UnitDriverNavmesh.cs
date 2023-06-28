@@ -53,6 +53,12 @@ namespace GameCreator.Runtime.Characters
             get => true;
             set => _ = value;
         }
+        
+        public override Axonometry Axonometry
+        {
+            get => null;
+            set => _ = value;
+        }
 
         // INITIALIZERS: --------------------------------------------------------------------------
 

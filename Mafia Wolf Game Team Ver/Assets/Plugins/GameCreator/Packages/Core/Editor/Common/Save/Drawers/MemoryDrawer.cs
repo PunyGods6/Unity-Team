@@ -13,7 +13,8 @@ namespace GameCreator.Editor.Common
             SerializationUtils.CreateChildProperties(
                 container,
                 property,
-                false
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
             );
 
             return container;

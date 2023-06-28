@@ -1,6 +1,7 @@
+using GameCreator.Editor.Common;
+using GameCreator.Runtime.Common;
 using GameCreator.Runtime.Dialogue;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace GameCreator.Editor.Dialogue
@@ -15,9 +16,17 @@ namespace GameCreator.Editor.Dialogue
             SerializedProperty actor = property.FindPropertyRelative("m_Actor");
             SerializedProperty target = property.FindPropertyRelative("m_Target");
 
-            PropertyField field = new PropertyField(target, actor.name);
-            root.Add(field);
+            string label = actor.objectReferenceValue != null
+                ? TextUtils.Humanize(actor.objectReferenceValue.name)
+                : "Unknown";
 
+            PropertyElement fieldTarget = new PropertyElement(
+                target.FindPropertyRelative(IPropertyDrawer.PROPERTY_NAME),
+                label, 
+                false
+            );
+            
+            root.Add(fieldTarget);
             return root;
         }
     }

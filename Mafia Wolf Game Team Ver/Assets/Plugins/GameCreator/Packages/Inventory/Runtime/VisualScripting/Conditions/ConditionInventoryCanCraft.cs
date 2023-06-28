@@ -41,8 +41,11 @@ namespace GameCreator.Runtime.Inventory
             if (fromBag == null) return false;
             if (item == null) return false;
             if (toBag == null) return false;
+
+            bool canCraft = Crafting.CanCraft(item, fromBag, toBag);
+            bool enoughIngredients = Crafting.EnoughCraftingIngredients(item, fromBag);
             
-            return Crafting.CanCraft(item, fromBag, toBag);
+            return canCraft && enoughIngredients;
         }
     }
 }

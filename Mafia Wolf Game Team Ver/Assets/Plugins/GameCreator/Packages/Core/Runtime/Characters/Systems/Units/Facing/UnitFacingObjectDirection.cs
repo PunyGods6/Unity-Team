@@ -18,6 +18,14 @@ namespace GameCreator.Runtime.Characters
         [SerializeField]
         private PropertyGetGameObject m_DirectionOf = GetGameObjectMainCamera.Create();
         
+        // PROPERTIES: ----------------------------------------------------------------------------
+        
+        public override Axonometry Axonometry
+        {
+            get => null;
+            set => _ = value;
+        }
+        
         // METHODS: -------------------------------------------------------------------------------
         
         protected override Vector3 GetDefaultDirection()

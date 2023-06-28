@@ -23,11 +23,10 @@ namespace GameCreator.Runtime.Characters
         
         public override float CalculatePriority(Character character, IInteractive interactive)
         {
-            Character player = ShortcutPlayer.Get<Character>();
-            if (player == null) return float.MaxValue;
+            if (character == null) return float.MaxValue;
             
             return Vector3.Distance(
-                player.transform.TransformPoint(this.m_Offset), 
+                character.transform.TransformPoint(this.m_Offset), 
                 interactive.Position
             );
         }

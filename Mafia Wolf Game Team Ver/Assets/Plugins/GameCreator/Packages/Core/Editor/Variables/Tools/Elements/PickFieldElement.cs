@@ -59,6 +59,9 @@ namespace GameCreator.Editor.Variables
                 this.m_Body, 
                 this.m_Property, 
                 this.HideLabels
+                    ? SerializationUtils.ChildrenMode.HideLabelsInChildren
+                    : SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
             );
         }
 

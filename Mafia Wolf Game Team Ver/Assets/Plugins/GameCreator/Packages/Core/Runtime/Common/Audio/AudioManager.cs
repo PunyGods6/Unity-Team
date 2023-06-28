@@ -126,8 +126,12 @@ namespace GameCreator.Runtime.Common
         public bool IsShared => true;
 
         public System.Type SaveType => typeof(Volume);
-        public object SaveData => this.Volume;
         
+        public object GetSaveData(bool includeNonSavable)
+        {
+            return this.Volume;
+        }
+
         public LoadMode LoadMode => LoadMode.Greedy;
         
         public Task OnLoad(object value)

@@ -20,6 +20,8 @@ namespace GameCreator.Editor.Characters
             );
             
             root.Add(inputElement);
+            inputElement.SetEnabled(!EditorApplication.isPlayingOrWillChangePlaymode);
+            
             return root; 
         }
     }

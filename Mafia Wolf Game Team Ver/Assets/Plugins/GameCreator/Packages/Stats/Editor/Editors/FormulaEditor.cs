@@ -53,10 +53,10 @@ namespace GameCreator.Editor.Stats
             TextField fieldFormula = new TextField(string.Empty, int.MaxValue, false, false, '*')
             {
                 name = NAME_FORMULA,
-                bindingPath = propertyFormula.propertyPath
+                bindingPath = propertyFormula.propertyPath,
+                multiline = true
             };
 
-            fieldFormula.multiline = true;
             fieldFormula.AddToClassList(CLASS_MONOSPACE);
 
             PropertyField fieldTable = new PropertyField(propertyTable, LABEL_TABLE)

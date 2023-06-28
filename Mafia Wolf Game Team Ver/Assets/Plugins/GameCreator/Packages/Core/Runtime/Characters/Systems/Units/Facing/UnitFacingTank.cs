@@ -21,6 +21,12 @@ namespace GameCreator.Runtime.Characters
         // PROPERTIES: ----------------------------------------------------------------------------
 
         public override Type ForcePlayer => typeof(UnitPlayerTank);
+        
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
 
         // INITIALIZERS: --------------------------------------------------------------------------
 

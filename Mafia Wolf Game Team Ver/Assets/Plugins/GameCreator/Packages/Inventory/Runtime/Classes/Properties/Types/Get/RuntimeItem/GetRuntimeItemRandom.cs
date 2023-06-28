@@ -26,7 +26,7 @@ namespace GameCreator.Runtime.Inventory
 
             foreach (Cell contentCell in contentList)
             {
-                if (!contentCell.Available) continue;
+                if (contentCell.Available) continue;
                 candidatesList.Add(contentCell);
             }
 

@@ -18,12 +18,12 @@ namespace GameCreator.Runtime.Inventory.UnityUI
 
         public override bool RequiresCollider => true;
 
-        protected override void OnReceiveCommand(Trigger trigger, PropertyName command)
+        protected override void OnReceiveCommand(Trigger trigger, CommandArgs args)
         {
-            base.OnReceiveCommand(trigger, command);
-
-            if (command != COMMAND_DROP_ITEM) return;
-            _ = trigger.Execute(this.Self);
+            base.OnReceiveCommand(trigger, args);
+            
+            if (args.Command != COMMAND_DROP_ITEM) return;
+            _ = trigger.Execute(args.Target);
         }
     }
 }

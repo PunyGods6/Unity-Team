@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameCreator.Runtime.Common
@@ -10,12 +11,13 @@ namespace GameCreator.Runtime.Common
         private const int WIDTH = 64;
         private const int HEIGHT = 64;
         
+        [field: NonSerialized]
         private static readonly Dictionary<int, Texture2D> Cache = new Dictionary<int, Texture2D>();
 
         // MEMBERS: -------------------------------------------------------------------------------
 
-        private readonly Color m_Tint;
-        private readonly IIcon m_Overlay;
+        [NonSerialized] private readonly Color m_Tint;
+        [NonSerialized] private readonly IIcon m_Overlay;
 
         // PROPERTIES: ----------------------------------------------------------------------------
 

@@ -19,7 +19,10 @@ namespace GameCreator.Editor.Common
 
             SerializationUtils.CreateChildProperties(
                 root, property, 
-                propertyItem.HideLabelsInEditor(),
+                propertyItem.HideLabelsInEditor()
+                    ? SerializationUtils.ChildrenMode.HideLabelsInChildren
+                    : SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true,
                 PROPERTY_NAME
             );
             

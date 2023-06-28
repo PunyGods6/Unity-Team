@@ -163,6 +163,7 @@ namespace GameCreator.Runtime.VisualScripting
         protected internal virtual void OnReceiveSignal(Trigger trigger, SignalArgs args)
         { }
         
+        [Obsolete("Soon to deprecate. Use OnReceiveCommand(trigger, CommandArgs)")]
         protected internal virtual void OnReceiveCommand(Trigger trigger, PropertyName command)
         { }
         

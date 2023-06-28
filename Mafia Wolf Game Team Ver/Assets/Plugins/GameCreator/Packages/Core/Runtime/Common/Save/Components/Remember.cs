@@ -43,9 +43,12 @@ namespace GameCreator.Runtime.Common
 
         public Type SaveType => this.m_Memories.SaveType;
 
-        public object SaveData => this.m_SaveUniqueID.SaveValue
-            ? this.m_Memories.GetTokens(this.gameObject)
-            : null;
+        public object GetSaveData(bool includeNonSavable)
+        {
+            return this.m_SaveUniqueID.SaveValue
+                ? this.m_Memories.GetTokens(this.gameObject)
+                : null;
+        }
         
         public LoadMode LoadMode => LoadMode.Lazy;
         

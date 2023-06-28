@@ -46,8 +46,8 @@ namespace GameCreator.Runtime.Variables
         public LoadMode LoadMode => LoadMode.Lazy;
         
         public abstract Type SaveType { get; }
-        
-        public abstract object SaveData { get; }
+
+        public abstract object GetSaveData(bool includeNonSavable);
         public abstract Task OnLoad(object value);
     }
 }

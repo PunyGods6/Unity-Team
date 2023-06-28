@@ -24,6 +24,14 @@ namespace GameCreator.Runtime.Characters
         // MEMBERS: -------------------------------------------------------------------------------
         
         [NonSerialized] private Args args;
+        
+        // PROPERTIES: ----------------------------------------------------------------------------
+        
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
 
         // METHODS: -------------------------------------------------------------------------------
         

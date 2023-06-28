@@ -16,15 +16,37 @@ namespace GameCreator.Editor.Variables
         
         private TextField m_NameField;
         private VisualElement m_NameDropdown;
+        
+        // PROPERTIES: ----------------------------------------------------------------------------
+
+        protected override Object Asset
+        {
+            get
+            {
+                return this.m_PropertyVariable.propertyType switch
+                {
+                    SerializedPropertyType.ObjectReference =>
+                        this.m_PropertyVariable.objectReferenceValue,
+                    
+                    SerializedPropertyType.ManagedReference =>
+                        this.m_PropertyVariable.managedReferenceValue is PropertyGetGameObject
+                            property && property.SceneReference != null
+                            ? property.SceneReference.GetComponent<LocalNameVariables>()
+                            : null,
+                    
+                    _ => null
+                };
+            }
+        }
 
         // CONSTRUCTOR: ---------------------------------------------------------------------------
 
-        public LocalNamePickTool(ObjectField asset, SerializedProperty property)
-            : base(asset, property, true, false, ValueNull.TYPE_ID)
+        public LocalNamePickTool(SerializedProperty property)
+            : base(property, true, false, ValueNull.TYPE_ID)
         { }
         
-        public LocalNamePickTool(ObjectField asset, SerializedProperty property, IdString typeID, bool allowCast)
-            : base(asset, property, false, allowCast, typeID)
+        public LocalNamePickTool(SerializedProperty property, IdString typeID, bool allowCast)
+            : base(property, false, allowCast, typeID)
         { }
 
         protected override void RefreshPickList(Object asset)

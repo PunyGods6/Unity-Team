@@ -40,7 +40,7 @@ namespace GameCreator.Runtime.Common
                 InputActionMap map = this.m_InputAsset.FindActionMap(this.m_ActionMap);
                 if (map != null)
                 {
-                    this.m_InputAction = this.m_InputAsset.FindAction(this.m_Action);
+                    this.m_InputAction = map.FindAction(this.m_Action);
                     return this.m_InputAction;
                 }
 

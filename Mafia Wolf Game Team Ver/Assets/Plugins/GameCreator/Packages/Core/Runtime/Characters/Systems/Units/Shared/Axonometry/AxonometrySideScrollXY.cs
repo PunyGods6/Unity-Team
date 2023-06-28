@@ -23,5 +23,16 @@ namespace GameCreator.Runtime.Characters
         {
             return direction.x >= 0f ? Vector3.right : Vector3.left;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+
+        public override object Clone()
+        {
+            return new AxonometrySideScrollXY();
+        }
+        
+        // STRING: --------------------------------------------------------------------------------
+        
+        public override string ToString() => "Side-Scroll XY";
     }
 }

@@ -11,25 +11,29 @@ namespace GameCreator.Editor.Variables
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
+            return CreateGUI(property);
+        }
+        
+        // PAINT METHOD: --------------------------------------------------------------------------
+
+        public static VisualElement CreateGUI(SerializedProperty property)
+        {
             VisualElement root = new VisualElement();
             
             SerializedProperty list = property.FindPropertyRelative("m_List");
             NameVariableRuntime runtime = property.GetValue<NameVariableRuntime>();
 
             Object target = property.serializedObject.targetObject;
-            bool isPrefab = PrefabUtility.IsPartOfPrefabAsset(target);
 
-            switch (EditorApplication.isPlayingOrWillChangePlaymode && !isPrefab)
-            {
-                case true:
-                    root.Add(new NameListView(runtime));
-                    break;
-                
-                case false:
-                    root.Add(new NameListTool(list));
-                    break;
-            }
+            bool isPlaymode = EditorApplication.isPlayingOrWillChangePlaymode;
+            bool isAsset = PrefabUtility.IsPartOfPrefabAsset(target) ||
+                           target is ScriptableObject;
 
+            VisualElement tool = isPlaymode && !isAsset
+                ? new NameListView(runtime)
+                : new NameListTool(list);
+
+            root.Add(tool);
             return root;
         }
     }

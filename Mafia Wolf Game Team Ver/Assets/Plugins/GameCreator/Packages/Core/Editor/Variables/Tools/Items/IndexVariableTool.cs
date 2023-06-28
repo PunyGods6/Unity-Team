@@ -17,8 +17,15 @@ namespace GameCreator.Editor.Variables
         // PROPERTIES: ----------------------------------------------------------------------------
         
         public override string Title => $"{this.Index}: {this.Variable?.Title}";
-        private TVariable Variable => (this.ParentTool as IndexListTool)?.IndexList.Get(this.Index);
-        
+        private TVariable Variable
+        {
+            get
+            {
+                IndexListTool parentTool = this.ParentTool as IndexListTool;
+                return parentTool?.IndexList.Get(this.Index);
+            }
+        }
+
         protected override object Value => this.m_Property.GetValue<IndexVariable>();
         
         // CONSTRUCTOR: ---------------------------------------------------------------------------
@@ -34,7 +41,7 @@ namespace GameCreator.Editor.Variables
             this.m_Property.serializedObject.Update();
             SerializedProperty propertyValue = this.m_Property.FindPropertyRelative(PROP_VALUE); 
             
-            PropertyField fieldValue = new PropertyField(propertyValue, string.Empty);
+            PropertyField fieldValue = new PropertyField(propertyValue);
             fieldValue.Bind(propertyValue.serializedObject);
             
             fieldValue.RegisterValueChangeCallback(_ => this.UpdateHead());

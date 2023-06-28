@@ -34,7 +34,11 @@ namespace GameCreator.Runtime.VisualScripting
             Character character = this.m_Character.Get<Character>(args);
             if (character == null) return DefaultResult;
 
-            character.Kernel.ChangeDriver(character, this.m_Driver.Wrapper);
+            if (this.m_Driver.Wrapper.GetType() != character.Driver.GetType())
+            {
+                character.Kernel.ChangeDriver(character, this.m_Driver.Wrapper);
+            }
+            
             return DefaultResult;
         }
     }

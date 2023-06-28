@@ -18,8 +18,15 @@ namespace GameCreator.Editor.Variables
         
         public override string Title => this.Variable?.Title;
 
-        private TVariable Variable => (this.ParentTool as NameListTool)?.NameList.Get(this.Index);
-        
+        private TVariable Variable
+        {
+            get
+            {
+                NameListTool parentTool = this.ParentTool as NameListTool;
+                return parentTool?.NameList.Get(this.Index);
+            }
+        }
+
         protected override object Value => this.m_Property.GetValue<NameVariable>();
 
         // CONSTRUCTOR: ---------------------------------------------------------------------------

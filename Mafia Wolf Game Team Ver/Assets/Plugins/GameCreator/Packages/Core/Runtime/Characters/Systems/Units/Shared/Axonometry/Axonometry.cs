@@ -4,11 +4,11 @@ using UnityEngine;
 namespace GameCreator.Runtime.Characters
 {
     [Serializable]
-    public class Axonometry
+    public class Axonometry : ICloneable
     {
         // EXPOSED MEMBERS: -----------------------------------------------------------------------
         
-        [SerializeReference] private IAxonometry m_Axonometry = new AxonometryNone();
+        [SerializeReference] private TAxonometry m_Axonometry = new AxonometryNone();
         
         // PUBLIC METHODS: ------------------------------------------------------------------------
 
@@ -26,5 +26,16 @@ namespace GameCreator.Runtime.Characters
         {
             return this.m_Axonometry?.ProcessRotation(facing, direction) ?? direction;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+        
+        public object Clone() => new Axonometry
+        {
+            m_Axonometry = this.m_Axonometry.Clone() as TAxonometry
+        };
+
+        // STRING: --------------------------------------------------------------------------------
+
+        public override string ToString() => this.m_Axonometry.ToString();
     }
 }

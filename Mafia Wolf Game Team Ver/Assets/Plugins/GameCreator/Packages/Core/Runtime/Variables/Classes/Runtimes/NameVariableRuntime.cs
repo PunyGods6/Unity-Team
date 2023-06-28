@@ -10,7 +10,7 @@ namespace GameCreator.Runtime.Variables
     {
         // MEMBERS: -------------------------------------------------------------------------------
 
-        [SerializeField] private NameList m_List = new NameList();
+        [SerializeReference] private NameList m_List = new NameList();
         
         // PROPERTIES: ----------------------------------------------------------------------------
         

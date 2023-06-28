@@ -33,6 +33,14 @@ namespace GameCreator.Runtime.Characters
         [NonSerialized] private float m_DirectionChangeTime;
         [NonSerialized] private bool m_WasDirectionChanged;
         
+        // PROPERTIES: ----------------------------------------------------------------------------
+        
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
+        
         // METHODS: -------------------------------------------------------------------------------
         
         protected override Vector3 GetDefaultDirection()

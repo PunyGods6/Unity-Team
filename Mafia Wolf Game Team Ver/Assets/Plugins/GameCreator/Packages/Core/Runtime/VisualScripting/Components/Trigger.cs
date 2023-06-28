@@ -351,6 +351,7 @@ namespace GameCreator.Runtime.VisualScripting
         /// is listening to this event, it will be executed.
         /// </summary>
         /// <param name="command">The name of the command to execute</param>
+        [Obsolete("Soon to deprecate. Use OnReceiveCommand(CommandArgs) instead")]
         public void OnReceiveCommand(PropertyName command)
         {
             this.m_TriggerEvent?.OnReceiveCommand(this, new CommandArgs(command));

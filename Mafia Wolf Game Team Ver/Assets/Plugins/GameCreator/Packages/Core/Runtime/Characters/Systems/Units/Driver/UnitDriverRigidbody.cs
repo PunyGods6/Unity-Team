@@ -57,6 +57,12 @@ namespace GameCreator.Runtime.Characters
             get => this.m_Capsule.enabled;
             set => this.m_Capsule.enabled = value;
         }
+        
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
 
         // INITIALIZERS: --------------------------------------------------------------------------
 

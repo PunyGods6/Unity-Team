@@ -79,6 +79,11 @@ namespace GameCreator.Runtime.Dialogue.UnityUI
 
             this.m_PreviousActorPrimaryHash = -1;
             this.m_PreviousActorAlternateHash = -1;
+
+            this.m_PrimaryActorName.Text = string.Empty;
+            this.m_AlternateActorName.Text = string.Empty;
+            this.m_PrimaryActorDescription.Text = string.Empty;
+            this.m_AlternateActorDescription.Text = string.Empty;
         }
         
         public override void OnStartNext(Story story, int nodeId, Args args)

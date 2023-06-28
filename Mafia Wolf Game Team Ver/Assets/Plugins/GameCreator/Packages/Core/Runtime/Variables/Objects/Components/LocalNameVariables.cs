@@ -83,9 +83,12 @@ namespace GameCreator.Runtime.Variables
 
         public override Type SaveType => typeof(SaveSingleNameVariables);
 
-        public override object SaveData => this.m_SaveUniqueID.SaveValue
-            ? new SaveSingleNameVariables(this.m_Runtime)
-            : null;
+        public override object GetSaveData(bool includeNonSavable)
+        {
+            return this.m_SaveUniqueID.SaveValue
+                ? new SaveSingleNameVariables(this.m_Runtime)
+                : null;   
+        }
 
         public override Task OnLoad(object value)
         {

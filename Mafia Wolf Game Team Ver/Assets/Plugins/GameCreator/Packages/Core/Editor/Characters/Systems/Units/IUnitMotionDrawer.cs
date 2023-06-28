@@ -26,7 +26,10 @@ namespace GameCreator.Editor.Characters
             body.Clear();
             
             SerializationUtils.CreateChildProperties(
-                body, property, false,
+                body,
+                property,
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren, 
+                true,
                 PROPERTY_INTERACTION
             );
             

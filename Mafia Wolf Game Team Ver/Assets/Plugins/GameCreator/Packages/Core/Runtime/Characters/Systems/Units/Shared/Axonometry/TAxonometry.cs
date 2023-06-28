@@ -18,5 +18,9 @@ namespace GameCreator.Runtime.Characters
         {
             return direction;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+
+        public abstract object Clone();
     }
 }

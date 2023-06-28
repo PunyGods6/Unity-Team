@@ -25,6 +25,15 @@ namespace GameCreator.Editor.Common
 
         private const string SPACE = " ";
         private const string INDENT = "";
+        
+        // ENUMS: ---------------------------------------------------------------------------------
+        
+        public enum ChildrenMode
+        {
+            ShowLabelsInChildren,
+            HideLabelsInChildren,
+            FullWidthChildren
+        }
 
         // UTILITIES: -----------------------------------------------------------------------------
 
@@ -46,14 +55,30 @@ namespace GameCreator.Editor.Common
 
         // UI TOOLKIT: ----------------------------------------------------------------------------
 
+        [Obsolete("Use CreateChildProperties() with ChildrenMode instead")]
         public static bool CreateChildProperties(VisualElement root, SerializedProperty prop,
             bool hideLabelsInChildren, params string[] excludeFields)
         {
             return CreateChildProperties(root, prop, hideLabelsInChildren, false, excludeFields);
         }
-        
+
+        [Obsolete("Use CreateChildProperties() with ChildrenMode instead")]
         public static bool CreateChildProperties(VisualElement root, SerializedProperty prop,
             bool hideLabelsInChildren, bool indent, params string[] excludeFields)
+        {
+            return CreateChildProperties(
+                root,
+                prop,
+                hideLabelsInChildren
+                    ? ChildrenMode.HideLabelsInChildren
+                    : ChildrenMode.ShowLabelsInChildren,
+                indent, 
+                excludeFields
+            );
+        }
+        
+        public static bool CreateChildProperties(VisualElement root, SerializedProperty prop,
+            ChildrenMode mode, bool indent, params string[] excludeFields)
         {
             SerializedProperty iteratorProperty = prop.Copy();
             SerializedProperty endProperty = iteratorProperty.GetEndProperty();
@@ -66,9 +91,13 @@ namespace GameCreator.Editor.Common
                 if (SerializedProperty.EqualContents(iteratorProperty, endProperty)) break;
                 if (excludeFields.Contains(iteratorProperty.name)) continue;
                 
-                PropertyField field = hideLabelsInChildren
-                    ? new PropertyField(iteratorProperty, SPACE)
-                    : new PropertyField(iteratorProperty);
+                PropertyField field = mode switch
+                {
+                    ChildrenMode.ShowLabelsInChildren => new PropertyField(iteratorProperty),
+                    ChildrenMode.HideLabelsInChildren => new PropertyField(iteratorProperty, SPACE),
+                    ChildrenMode.FullWidthChildren => new PropertyField(iteratorProperty, string.Empty),
+                    _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
+                };
         
                 root.Add(field);
                 numProperties += 1;

@@ -16,6 +16,8 @@ namespace GameCreator.Runtime.Characters
         Vector3 LocalTargetFaceDirection { get; }
         
         float PivotSpeed { get; }
+        
+        Axonometry Axonometry { get; set; }
 
         // PUBLIC METHODS: ------------------------------------------------------------------------
 

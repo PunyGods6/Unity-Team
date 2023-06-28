@@ -116,20 +116,26 @@ namespace GameCreator.Runtime.Variables
 
         public Type SaveType => typeof(SaveGroupNameVariables);
 
-        public object SaveData
+        public object GetSaveData(bool includeNonSavable)
         {
-            get
-            {
-                Dictionary<string, NameVariableRuntime> saveValues = new Dictionary<string, NameVariableRuntime>();
+            Dictionary<string, NameVariableRuntime> saveValues = new Dictionary<string, NameVariableRuntime>();
                         
-                foreach (KeyValuePair<IdString, NameVariableRuntime> entry in this.Values)
+            foreach (KeyValuePair<IdString, NameVariableRuntime> entry in this.Values)
+            {
+                if (includeNonSavable)
                 {
                     saveValues[entry.Key.String] = entry.Value;
+                    continue;
                 }
 
-                SaveGroupNameVariables saveData = new SaveGroupNameVariables(saveValues);
-                return saveData;
+                GlobalNameVariables asset = VariablesRepository.Get.Variables.GetNameVariablesAsset(entry.Key);
+                if (asset == null || !asset.Save) continue;
+                
+                saveValues[entry.Key.String] = entry.Value;
             }
+
+            SaveGroupNameVariables saveData = new SaveGroupNameVariables(saveValues);
+            return saveData;
         }
 
         public Task OnLoad(object value)

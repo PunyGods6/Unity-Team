@@ -17,7 +17,7 @@ namespace GameCreator.Editor.VisualScripting
             VisualElement root = new VisualElement();
 
             SerializationUtils.CreateChildProperties(
-                root, property, false, 
+                root, property, SerializationUtils.ChildrenMode.ShowLabelsInChildren, true, 
                 PROP_TIME, PROP_DURATION
             );
             

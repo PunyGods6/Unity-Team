@@ -19,7 +19,8 @@ namespace GameCreator.Runtime.Characters
         float GravityInfluence { get; }
 
         bool Collision { get; set; }
-
+        Axonometry Axonometry { get; set; }
+        
         // POSITION MODIFIERS: --------------------------------------------------------------------
 
         void SetPosition(Vector3 position);

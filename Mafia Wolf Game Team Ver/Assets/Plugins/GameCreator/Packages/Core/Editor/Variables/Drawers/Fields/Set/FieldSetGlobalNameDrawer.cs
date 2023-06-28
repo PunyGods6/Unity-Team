@@ -24,15 +24,18 @@ namespace GameCreator.Editor.Variables
                 bindingPath = variable.propertyPath
             };
             
+            fieldVariable.AddToClassList(AlignLabel.CLASS_UNITY_ALIGN_LABEL);
+            
             SerializedProperty typeIDStr = typeID.FindPropertyRelative(IdStringDrawer.NAME_STRING);
             IdString typeIDValue = new IdString(typeIDStr.stringValue);
             
             GlobalNamePickTool toolPickName = new GlobalNamePickTool(
-                fieldVariable, 
                 property,
                 typeIDValue,
                 false
             );
+            
+            fieldVariable.RegisterValueChangedCallback(_ => toolPickName.OnChangeAsset());
 
             root.Add(fieldVariable);
             root.Add(toolPickName);

@@ -72,6 +72,9 @@ namespace GameCreator.Editor.VisualScripting
                 this.m_Body, 
                 this.m_Property, 
                 this.HideLabels
+                    ? SerializationUtils.ChildrenMode.HideLabelsInChildren
+                    : SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
             );
 
             this.m_Body.style.display = anyProperties

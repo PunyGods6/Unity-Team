@@ -42,9 +42,17 @@ namespace GameCreator.Runtime.Common
         private void Enable()
         {
             if (this.InputAction == null) return;
-            if (this.InputAction.enabled) return;
+            if (this.InputAction.enabled)
+            {
+                this.InputAction.started -= this.ExecuteEventStart;
+                this.InputAction.canceled -= this.ExecuteEventCancel;
+                this.InputAction.performed -= this.ExecuteEventPerform;
+            }
+            else
+            {
+                this.InputAction.Enable();    
+            }
             
-            this.InputAction.Enable();
             this.InputAction.started += this.ExecuteEventStart;
             this.InputAction.canceled += this.ExecuteEventCancel;
             this.InputAction.performed += this.ExecuteEventPerform;
@@ -52,9 +60,9 @@ namespace GameCreator.Runtime.Common
 
         private void Disable()
         {
-            if (this.InputAction is not { enabled: true }) return;
-
-            this.InputAction.Disable();
+            if (this.InputAction == null) return;
+            if (this.InputAction.enabled) this.InputAction.Disable();
+            
             this.InputAction.started -= this.ExecuteEventStart;
             this.InputAction.canceled -= this.ExecuteEventCancel;
             this.InputAction.performed -= this.ExecuteEventPerform;

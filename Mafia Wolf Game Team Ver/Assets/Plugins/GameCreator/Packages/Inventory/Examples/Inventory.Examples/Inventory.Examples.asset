@@ -41,7 +41,7 @@ MonoBehaviour:
     m_Version:
       major: 1
       minor: 4
-      patch: 7
+      patch: 8
     m_Complexity: 0
     m_Dependencies:
     - m_ID: GameCreator.Blockout
@@ -58,9 +58,9 @@ MonoBehaviour:
       m_MinVersion:
         major: 1
         minor: 1
-        patch: 7
+        patch: 8
     - m_ID: Inventory.UI
       m_MinVersion:
         major: 1
         minor: 1
-        patch: 6
+        patch: 7

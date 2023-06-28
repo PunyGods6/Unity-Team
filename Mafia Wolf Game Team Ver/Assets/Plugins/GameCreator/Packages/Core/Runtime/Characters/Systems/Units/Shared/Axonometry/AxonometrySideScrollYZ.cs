@@ -23,5 +23,16 @@ namespace GameCreator.Runtime.Characters
         {
             return direction.z >= 0f ? Vector3.forward : Vector3.back;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+
+        public override object Clone()
+        {
+            return new AxonometrySideScrollYZ();
+        }
+        
+        // STRING: --------------------------------------------------------------------------------
+        
+        public override string ToString() => "Side-Scroll YZ";
     }
 }

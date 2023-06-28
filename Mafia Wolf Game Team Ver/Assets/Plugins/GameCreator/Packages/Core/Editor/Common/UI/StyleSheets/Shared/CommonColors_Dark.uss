@@ -1,5 +1,6 @@
 ﻿* {
     --gc-color-bg-default: #383838;
+    --gc-color-bg-text: #2a2a2a;
 
     --gc-color-bg-dark: #333333;
     --gc-color-bg-darker: #2a2a2a;
@@ -11,6 +12,7 @@
 
     --gc-color-border-default: #1a1a1a;
     --gc-color-border-element: #303030;
+    --gc-color-border-hover: #656565;
 
     --gc-color-border-active: #3d7ad9;
     --gc-color-bg-active: #2e5e85;

@@ -11,7 +11,12 @@ namespace GameCreator.Editor.Common.Drawers
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             VisualElement root = new VisualElement();
-            SerializationUtils.CreateChildProperties(root, property, false);
+            SerializationUtils.CreateChildProperties(
+                root,
+                property, 
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
+            );
             
             return root;
         }

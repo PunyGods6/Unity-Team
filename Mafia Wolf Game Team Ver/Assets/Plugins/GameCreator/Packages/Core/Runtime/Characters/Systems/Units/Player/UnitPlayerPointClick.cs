@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using GameCreator.Runtime.Common;
-using UnityEngine.Serialization;
 
 namespace GameCreator.Runtime.Characters
 {
@@ -148,7 +147,11 @@ namespace GameCreator.Runtime.Characters
             if (!this.m_IsControllable) return;
 
             Camera camera = ShortcutMainCamera.Get<Camera>();
-            Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            Ray ray = camera.ScreenPointToRay(Application.isMobilePlatform
+                ? Touchscreen.current.primaryTouch.position.ReadValue()
+                : Mouse.current.position.ReadValue()
+            );
 
             int hitCount = Physics.RaycastNonAlloc(
                 ray, this.m_HitBuffer,

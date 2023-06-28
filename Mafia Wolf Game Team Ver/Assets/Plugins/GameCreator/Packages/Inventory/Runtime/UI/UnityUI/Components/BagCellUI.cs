@@ -254,7 +254,12 @@ namespace GameCreator.Runtime.Inventory.UnityUI
             if (trigger != null)
             {
                 Item.LastItemDropped = this.Cell.Peek();
-                trigger.OnReceiveCommand(EventInventoryOnDropItem.COMMAND_DROP_ITEM);
+                CommandArgs commandArgs = new CommandArgs(
+                    EventInventoryOnDropItem.COMMAND_DROP_ITEM,
+                    this.BagUI.Bag.gameObject
+                );
+                
+                trigger.OnReceiveCommand(commandArgs);
                 return true;
             }
 

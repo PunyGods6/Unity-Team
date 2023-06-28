@@ -76,6 +76,12 @@ namespace GameCreator.Runtime.Characters
             set => this.m_Controller.detectCollisions = value;
         }
 
+        public override Axonometry Axonometry
+        {
+            get => this.m_Axonometry;
+            set => this.m_Axonometry = value;
+        }
+
         // INITIALIZERS: --------------------------------------------------------------------------
 
         public UnitDriverController()

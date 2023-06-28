@@ -9,7 +9,7 @@ namespace GameCreator.Runtime.Common
         bool IsShared { get; }
 
         Type SaveType { get; }
-		object SaveData { get; }
+        object GetSaveData(bool includeNonSavable);
 
 		LoadMode LoadMode { get; }
 		Task OnLoad(object value);

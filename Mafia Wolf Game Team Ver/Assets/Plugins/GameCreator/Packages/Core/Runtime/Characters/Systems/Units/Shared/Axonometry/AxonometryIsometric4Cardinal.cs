@@ -46,5 +46,16 @@ namespace GameCreator.Runtime.Characters
 
             return ISOMETRIC_DIRECTIONS[quadrant].normalized * magnitude;
         }
+        
+        // CLONE: ---------------------------------------------------------------------------------
+
+        public override object Clone()
+        {
+            return new AxonometryIsometric4Cardinal();
+        }
+        
+        // STRING: --------------------------------------------------------------------------------
+        
+        public override string ToString() => "4 Cardinal";
     }
 }

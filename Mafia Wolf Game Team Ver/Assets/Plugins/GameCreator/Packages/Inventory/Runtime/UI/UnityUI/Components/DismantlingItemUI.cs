@@ -18,6 +18,8 @@ namespace GameCreator.Runtime.Inventory.UnityUI
             this.InputBag,
             this.OutputBag
         );
+
+        protected override bool EnoughIngredients => true;
         
         // PUBLIC METHODS: ------------------------------------------------------------------------
 

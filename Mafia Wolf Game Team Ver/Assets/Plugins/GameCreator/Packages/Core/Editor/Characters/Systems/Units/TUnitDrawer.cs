@@ -131,7 +131,13 @@ namespace GameCreator.Editor.Characters
         {
             body.Clear();
 
-            SerializationUtils.CreateChildProperties(body, property, false);
+            SerializationUtils.CreateChildProperties(
+                body,
+                property,
+                SerializationUtils.ChildrenMode.ShowLabelsInChildren,
+                true
+            );
+            
             this.OnBuildBody(body, property);
         }
         

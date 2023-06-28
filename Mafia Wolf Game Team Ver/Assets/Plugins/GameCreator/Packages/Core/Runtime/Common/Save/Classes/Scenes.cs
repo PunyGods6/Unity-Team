@@ -65,7 +65,11 @@ namespace GameCreator.Runtime.Common.SaveSystem
         public bool IsShared => false;
         
         public Type SaveType => typeof(Token);
-        public object SaveData => Token.Create();
+        
+        public object GetSaveData(bool includeNonSavable)
+        {
+            return Token.Create();
+        }
 
         public LoadMode LoadMode => LoadMode.Greedy;
 

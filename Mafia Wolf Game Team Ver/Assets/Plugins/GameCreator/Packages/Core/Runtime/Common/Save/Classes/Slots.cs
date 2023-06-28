@@ -56,7 +56,11 @@ namespace GameCreator.Runtime.Common.SaveSystem
         public LoadMode LoadMode => LoadMode.Greedy;
 
         public Type SaveType => typeof(Slots);
-        public object SaveData => this;
+        
+        public object GetSaveData(bool includeNonSavable)
+        {
+            return this;
+        }
 
         public Task OnLoad(object value)
         {

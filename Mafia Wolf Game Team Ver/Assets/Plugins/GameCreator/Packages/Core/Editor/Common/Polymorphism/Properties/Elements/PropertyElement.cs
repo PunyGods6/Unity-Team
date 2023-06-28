@@ -21,7 +21,7 @@ namespace GameCreator.Editor.Common
         
         protected override string ElementNameRoot => "GC-PropertyElement-Root";
         protected override string ElementNameHead => "GC-PropertyElement-Head";
-        
+
         protected override string ElementNameBody => this.HideLabels
             ? "GC-PropertyElement-Body-HideLabels"
             : "GC-PropertyElement-Body-ShowLabels";
@@ -71,8 +71,10 @@ namespace GameCreator.Editor.Common
         {
             SerializationUtils.CreateChildProperties(
                 this.m_Body, 
-                this.m_Property, 
-                this.HideLabels,
+                this.m_Property,
+                this.HideLabels
+                    ? SerializationUtils.ChildrenMode.HideLabelsInChildren
+                    : SerializationUtils.ChildrenMode.ShowLabelsInChildren,
                 true
             );
         }

@@ -26,13 +26,7 @@ namespace GameCreator.Runtime.VisualScripting
 
         private const int PADDING = 50;
         
-        // TODO: Remove condition once 2022.3 LTS lands
-        
-        #if UNITY_2022_2_OR_NEWER
         private const string FONT_NAME = "LegacyRuntime.ttf";
-        #else 
-        private const string FONT_NAME = "Arial.ttf";
-        #endif
 
         private const int FONT_SIZE = 32;
         

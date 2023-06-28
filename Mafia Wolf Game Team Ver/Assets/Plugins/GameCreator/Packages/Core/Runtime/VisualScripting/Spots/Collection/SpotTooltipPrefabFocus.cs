@@ -4,10 +4,10 @@ using GameCreator.Runtime.Common;
 
 namespace GameCreator.Runtime.VisualScripting
 {
-    [Title("Activate Object on Focus")]
+    [Title("Instantiate Prefab on Focus")]
     [Image(typeof(IconCubeSolid), ColorTheme.Type.Blue, typeof(OverlayDot))]
     
-    [Category("Tooltips/Activate Object on Focus")]
+    [Category("Tooltips/Instantiate Prefab on Focus")]
     [Description(
         "Creates or Activates a prefab game object when the Interactive object is focused " +
         "and deactivates it when its unfocused"
@@ -23,7 +23,7 @@ namespace GameCreator.Runtime.VisualScripting
         // PROPERTIES: ----------------------------------------------------------------------------
 
         public override string Title => string.Format(
-            "Show {0} on Focus",
+            "Instantiate {0} on Focus",
             this.m_Prefab != null ? this.m_Prefab.name : "(none)"
         );
 
