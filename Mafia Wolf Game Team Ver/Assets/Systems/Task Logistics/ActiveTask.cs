@@ -8,35 +8,45 @@ using UnityEngine;
 public class ActiveTask : MonoBehaviour
 {
 
-	private void Start()
+	private void Awake()
 	{
-		CreateTask(Task.TaskType.PlaceItem, "TestTask1");
+		//CreateTask(Task.TaskType.PlaceItem, "TestTask1");
 	}
 
 
-	public void CreateTask(Task.TaskType taskType_, string name_)
-	{
-		switch (taskType_)
-		{
-			case Task.TaskType.PlaceItem:
-				Task taskCreated = new PlaceItemTask();
-				//taskCreated.StartTask();
-				taskCreated.taskType = taskType_;
-				taskCreated.taskName = name_;
-
-				
-
-				break;
-			case Task.TaskType.GoHere:
-				break;
-			case Task.TaskType.Interact:
-				break;
-			case Task.TaskType.Aquire:
-				break;
-			default:
-				break;
-		}
-	}
+	//public Task CreateTask(TaskData data_)
+	//{
+	//	Task taskCreated;
+	//
+	//	switch (data_.taskType)
+	//	{
+	//		case Task.TaskType.PlaceItem:
+	//			taskCreated = new PlaceItemTask();
+	//			//taskCreated.StartTask();
+	//			
+	//			
+	//
+	//			
+	//
+	//			
+	//		case Task.TaskType.GoHere:
+	//			return null;
+	//		case Task.TaskType.Interact:
+	//			return null;
+	//		case Task.TaskType.Aquire:
+	//			return null;
+	//		default:
+	//			return null;
+	//	}
+	//
+	//
+	//	taskCreated.taskType = data_.taskType;
+	//	taskCreated.taskName = name_;
+	//
+	//
+	//	return taskCreated;
+	//
+	//}
 
 }
 
@@ -54,6 +64,8 @@ public class Task : MonoBehaviour
 
 	//types of tasks
 	public enum TaskType { PlaceItem, GoHere, Interact, Aquire }
+	public enum TaskCompleteCondition { Proximity_Sphere, OnContact }
+
 
 	//tasks name and infomation that can be called
 	public string taskName;
@@ -84,18 +96,38 @@ public class Task : MonoBehaviour
 
 public class PlaceItemTask : Task
 {
-	public GameObject itemToPlace;
-	public Vector3 worldPositionToPlace;
+	//when task is done, call this tasks name to be removed from managers active task list
+	TaskManager thisTasksManager;
+
+	//customizable per task
+	public string mainObject;
+	public GameObject placeRelativeToObj;
+	public Vector3 placeRelativeToObj_PositionOffset;
 	public float radiusOfDetector;
-	public GameObject sphereDetector;   //savingth eobject so it can be deleted when task complete
 
-	public GameObject gameObjectToPlaceDetectorsUnder;      //palce to spawn detector colliders , so they dont move with this object- have empty in world to spawn detectors under
-	public GameObject sphearColliderObjExample;
+	//grabbed from catalogue
+	public GameObject sphearColliderObjExampleToClone;
 
+	//created to keep track of temp component so it can be delete later	
 	public List<GameObject> tempSpawnedObjs = new List<GameObject>();
 
-	public void StartTask(GameObject itemToPlace_, Vector3 worldPositionToPlace_, float radiusOfDetector, GameObject sphereDetector)
+
+	//script already under the object it should be,
+	public void StartTask(TaskManager thisTasksManager_, TaskData d, GameObject sphereDetectorToClone_)
 	{
+
+		//so it can report back to once this task is done
+		thisTasksManager = thisTasksManager_;
+
+		mainObject = d.tasksMainObject_Name;
+		placeRelativeToObj = d.tasksObj_ToInteractWith;
+		placeRelativeToObj_PositionOffset = d.tasksObj_ToInteractWith_PositionOffset;
+		radiusOfDetector = d.detectorRadius;
+		sphearColliderObjExampleToClone = sphereDetectorToClone_;
+
+
+
+
 		//add spawn sphear collider and adjust radius and position to where appropriate
 		sphereDetector = Instantiate(sphearColliderObjExample, worldPositionToPlace, Quaternion.identity, gameObjectToPlaceDetectorsUnder.transform);
 		// Customize the properties 
